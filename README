@@ -1,0 +1,18 @@
+pip install pytest-html
+
+pytesfind . | grep -E "(__pycache__|__pytest_cache__|.pytest_cache|\.pyc|\.pyo$)" | xargs rm -rft -k test_s.py --html=report.html --self-contained-html
+
+pytest ./tests/test_selenium.py::test_get_title2
+
+venv/bin/pytest ./tests/test_selenium.py --alluredir=./test_report
+allure serve ./test_report
+
+venv/bin/pytest ./tests/test_selenium.py --html=report.html --self-contained-html
+
+
+docs:
+https://pytest-html.readthedocs.io/en/latest/installing.html
+https://www.tutorialspoint.com/python/python_sending_email.htm
+https://realpython.com/python-send-email/#sending-multiple-personalized-emails
+
+https://selenium-python.readthedocs.io/locating-elements.html
