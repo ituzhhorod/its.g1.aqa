@@ -1,12 +1,12 @@
-pip install pytest-html
-
-pytesfind . | grep -E "(__pycache__|__pytest_cache__|.pytest_cache|\.pyc|\.pyo$)" | xargs rm -rft -k test_s.py --html=report.html --self-contained-html
+find . | grep -E "(__pycache__|__pytest_cache__|.pytest_cache|\.pyc|\.pyo$)" | xargs rm -rft
 
 pytest ./tests/test_selenium.py::test_get_title2
 
+allure
 venv/bin/pytest ./tests/test_selenium.py --alluredir=./test_report
 allure serve ./test_report
 
+pytest-html
 venv/bin/pytest ./tests/test_selenium.py --html=report.html --self-contained-html
 
 
