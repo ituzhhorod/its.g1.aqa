@@ -38,7 +38,3 @@ def test_get_title3(driver):
    driver.get("https://its.uz.ua/services/base_qa")
    assert 'its.uz.ua' in driver.title
 
-
-# def test_get_title(driver):
-#    driver.get("https://its.uz.ua/services/base_qa")
-#    assert 'Ручне тестування' in driver.title
