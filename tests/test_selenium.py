@@ -38,7 +38,6 @@ def test_get_title3(driver):
    driver.get("https://its.uz.ua/services/base_qa")
    assert 'its.uz.ua' in driver.title
 
-
 def test_click_contact_button_on_homepage(driver):
    get_homepage(driver)
    # Перевірка кліку на кнопку Станьте викладачем курсів -> Детальніше
@@ -47,3 +46,5 @@ def test_click_contact_button_on_homepage(driver):
    wait_for_element(driver, CONTACT_PAGE_BUTTON_SEND)
    # перевірити текст на новій сторінці
    assert_text_on_page(driver, "December 12, 2017")
+
+
