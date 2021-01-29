@@ -38,3 +38,15 @@ def test_get_title3(driver):
    driver.get("https://its.uz.ua/services/base_qa")
    assert 'its.uz.ua' in driver.title
 
+ def test_click_contact_button_on_homepage(driver):
+   driver.get("https://its.uz.ua/")
+   # Перевірка кліку на кнопку Станьте викладачем курсів -> Детальніше
+   button = driver.find_element(By.CSS_SELECTOR, 'a[href="/contact"]')
+   button.click()
+   # Чекаємо на кнопку "Надіслати"
+   WebDriverWait(driver, 10).until(
+   EC.presence_of_element_located((By.CSS_SELECTOR,"#button")))
+   # перевірити текст на новій сторінці
+   contact_page = driver.find_element_by_tag_name("body")
+   all_text_on_page = contact_page.text
+   assert "December 12, 2017" in all_text_on_page
