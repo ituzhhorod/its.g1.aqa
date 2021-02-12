@@ -38,31 +38,15 @@ def test_get_title3(driver):
    driver.get("https://its.uz.ua/services/base_qa")
    assert 'its.uz.ua' in driver.title
 
-def test_click_english_it_button_on_homepage(driver):
-    get_homepage(driver)
-    # Перевірка кліку на кнопку Англійська для ІТ спеціалістів -> Детальніше
-    button_click(driver, HOME_PAGE_BUTTON_DETAILS_ENGLISH)
-    # Чекаємо на кнопку "Зареєструватись на іншій cторінці"
-    wait_for_element(driver, ENLISH_PAGE_BUTTON_TEXT)
-  # перевірити текст на новій сторінці
-    assert_text_on_page(driver, "English for IT Specialists")
-
-
-def test_click_automation_testing_button_on_homepage(driver):
-    get_homepage(driver)
-    # Перевірка кліку на кнопку Автоматизоване Тестування -> Детальніше
-    button_click(driver, HOME_PAGE_BUTTON_DETAILS_AUTOMATION_TESTING)
-    # Чекаємо на кнопку "Зареєструватись на іншій cторінці"
-    wait_for_element(driver, AUTOMATION_TESTING_PAGE_BUTTON_REGISTER)
-    # перевірити текст на новій сторінці
-    assert_text_on_page(driver, "Automation QA")
-
-
-def test_click_contact_button_on_homepage(driver):
-    get_homepage(driver)
-    # Перевірка кліку на кнопку Стань викладачем курсів -> Детальніше
-    button_click(driver, HOME_PAGE_BUTTON_DETAILS_TEACHER_COURSES)
-    # Чекаємо на кнопку "Зареєструватись на іншій cторінці"
-    wait_for_element(driver, TEACHER_COURSES_PAGE_BUTTON_REGISTER)
-    # перевірити текст на новій сторінці
-    assert_text_on_page(driver, "December 12, 2017")
+ def test_click_contact_button_on_homepage(driver):
+   driver.get("https://its.uz.ua/")
+   # Перевірка кліку на кнопку Станьте викладачем курсів -> Детальніше
+   button = driver.find_element(By.CSS_SELECTOR, 'a[href="/contact"]')
+   button.click()
+   # Чекаємо на кнопку "Надіслати"
+   WebDriverWait(driver, 10).until(
+   EC.presence_of_element_located((By.CSS_SELECTOR,"#button")))
+   # перевірити текст на новій сторінці
+   contact_page = driver.find_element_by_tag_name("body")
+   all_text_on_page = contact_page.text
+   assert "December 12, 2017" in all_text_on_page
